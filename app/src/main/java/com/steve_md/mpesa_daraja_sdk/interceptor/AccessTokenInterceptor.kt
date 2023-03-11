@@ -6,6 +6,7 @@ import com.steve_md.mpesa_daraja_sdk.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import java.io.IOException
 
 
 /**
@@ -14,7 +15,10 @@ import okhttp3.Response
  * create the auth token and pass it as a header for our JSON request to the API
  *
  */
+
 class AccessTokenInterceptor : Interceptor {
+
+        @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): Response {
                 val keys = BuildConfig.CONSUMER_KEY + ":" + BuildConfig.CONSUMER_SECRET
 
