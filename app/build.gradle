@@ -53,3 +53,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.okio:okio:2.1.0'
 }
+
+buildTypes.each {
+    it.buildConfigField 'String', 'CONSUMER_KEY',DARAJA_CONSUMER_KEY
+    it.buildConfigField 'String', 'CONSUMER_SECRET', DARAJA_CONSUMER_SECRET
+}
