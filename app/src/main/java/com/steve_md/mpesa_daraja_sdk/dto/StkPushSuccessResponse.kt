@@ -13,5 +13,15 @@ data class StkPushResponse(
     @SerializedName("ResponseCode")
     val responseCode: String,
     @SerializedName("ResponseDescription")
-    val responseDescription: String
+    val responseDescription: String,
+
+    /*
+     * In case of any error
+     */
+    @SerializedName("requestId")
+    val requestId: String,
+    @SerializedName("errorCode")
+    val errorCode:String,
+    @SerializedName("errorMessage")
+    val errorMessage:String
 )
