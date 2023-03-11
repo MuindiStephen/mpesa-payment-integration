@@ -1,8 +1,11 @@
 package com.steve_md.mpesa_daraja_sdk.interceptor
 
-import okhttp3.Interceptor
-import okhttp3.Response
 
+import android.util.Base64
+import com.steve_md.mpesa_daraja_sdk.BuildConfig
+import okhttp3.Interceptor
+import okhttp3.Request
+import okhttp3.Response
 
 
 /**
@@ -13,7 +16,15 @@ import okhttp3.Response
  */
 class AccessTokenInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
-                TODO()
-        }
+                val keys = BuildConfig.CONSUMER_KEY + ":" + BuildConfig.CONSUMER_SECRET
 
+                // Utilities for encoding and decoding the Base64 representation of binary data
+                val request: Request = chain.request().newBuilder()
+                        .addHeader (
+                                "Authorization",
+                                "Basic " + Base64.encodeToString(keys.toByteArray(), Base64.NO_WRAP)
+                        )
+                        .build()
+                return chain.proceed(request)
+        }
 }
