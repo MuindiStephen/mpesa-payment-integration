@@ -3,7 +3,7 @@ package com.steve_md.mpesa_daraja_sdk.dto
 import com.google.gson.annotations.SerializedName
 
 
-data class StkPushResponse(
+data class StkPushRequest(
     @field:SerializedName("BusinessShortCode") private val businessShortCode: String,
     @field:SerializedName(
         "Password"
