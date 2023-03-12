@@ -4,7 +4,7 @@ package com.steve_md.mpesa_daraja_sdk.dto
 import com.google.gson.annotations.SerializedName
 
 /**
-* @param [accessToken] - The exact toke
+* @param [accessToken] - The exact token
 * @param [expiresIn] - When the token expires
  *
  *
