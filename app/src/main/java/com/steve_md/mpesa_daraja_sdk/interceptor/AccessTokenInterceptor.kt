@@ -18,17 +18,17 @@ import java.io.IOException
 
 class AccessTokenInterceptor : Interceptor {
 
-        @Throws(IOException::class)
-        override fun intercept(chain: Interceptor.Chain): Response {
-                val keys = BuildConfig.CONSUMER_KEY + ":" + BuildConfig.CONSUMER_SECRET
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val keys = BuildConfig.CONSUMER_KEY + ":" + BuildConfig.CONSUMER_SECRET
 
-                // Utilities for encoding and decoding the Base64 representation of binary data
-                val request: Request = chain.request().newBuilder()
-                        .addHeader (
-                                "Authorization",
-                                "Basic " + Base64.encodeToString(keys.toByteArray(), Base64.NO_WRAP)
-                        )
-                        .build()
-                return chain.proceed(request)
-        }
+        // Utilities for encoding and decoding the Base64 representation of binary data
+        val request: Request = chain.request().newBuilder()
+            .addHeader(
+                "Authorization",
+                "Basic " + Base64.encodeToString(keys.toByteArray(), Base64.NO_WRAP)
+            )
+            .build()
+        return chain.proceed(request)
+    }
 }

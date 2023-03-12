@@ -7,7 +7,7 @@ import okhttp3.Response
 import java.io.IOException
 
 
-class AuthInterceptor :  Interceptor {
+class AuthInterceptor : Interceptor {
     private var mAuthToken: String? = null
 
     @SuppressLint("NotConstructor")
