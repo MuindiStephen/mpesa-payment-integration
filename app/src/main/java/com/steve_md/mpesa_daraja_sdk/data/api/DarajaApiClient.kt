@@ -13,27 +13,50 @@ import java.util.concurrent.TimeUnit
 /**
  * Utilize Retrofit & Gson to handle our API calls
  */
-object DarajaApiClient {
+class DarajaApiClient {
 
-      // Http Logging Interceptor
-      private val httpLoggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
+    fun setIsDebug(isDebug: Boolean): DarajaApiClient {
+        is_Debug = isDebug
+        return this
+    }
 
-      // OkHttpClient
-      private val okHttpClient  = OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
-            .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
-            .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
+    fun setAuthToken(authToken: String): DarajaApiClient {
+        mAuthToken = authToken
+        return this
+    }
+
+    fun setGetAccessToken(getAccessToken: Boolean): DarajaApiClient {
+        isGetAccessToken = getAccessToken
+        return this
+    }
+
+    // Http Logging Interceptor
+    private val httpLoggingInterceptor = HttpLoggingInterceptor()
+        .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+    // OkHttpClient
+    private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(httpLoggingInterceptor)
+        .connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
+        .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
+        .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
+
+
+    // Get RestAdapter
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(SANDBOX_BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient.build())
+        .build()
 
 
 
-      private val retrofit = Retrofit.Builder()
-            .baseUrl(SANDBOX_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient.build())
-            .build()
+    val darajaApi by lazy { retrofit.create(DarajaApiService::class.java) }
 
-     val darajaApi  by lazy { retrofit.create(DarajaApiService::class.java) }
+    companion object {
+        private var is_Debug: Boolean = false
+        private var mAuthToken: String? = null
+        private var isGetAccessToken = false
+    }
 
 }
