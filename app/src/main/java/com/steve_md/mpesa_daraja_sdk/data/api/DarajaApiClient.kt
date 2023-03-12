@@ -1,5 +1,6 @@
 package com.steve_md.mpesa_daraja_sdk.data.api
 
+
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.CONNECT_TIMEOUT
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.READ_TIMEOUT
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.SANDBOX_BASE_URL
@@ -13,7 +14,11 @@ import java.util.concurrent.TimeUnit
 /**
  * Utilize Retrofit & Gson to handle our API calls
  */
-class DarajaApiClient {
+object DarajaApiClient {
+
+    private var is_Debug: Boolean = false
+    private var mAuthToken: String? = null
+    private var isGetAccessToken = false
 
     fun setIsDebug(isDebug: Boolean): DarajaApiClient {
         is_Debug = isDebug
@@ -53,10 +58,5 @@ class DarajaApiClient {
 
     val darajaApi by lazy { retrofit.create(DarajaApiService::class.java) }
 
-    companion object {
-        private var is_Debug: Boolean = false
-        private var mAuthToken: String? = null
-        private var isGetAccessToken = false
-    }
 
 }
