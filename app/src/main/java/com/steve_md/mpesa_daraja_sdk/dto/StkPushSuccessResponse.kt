@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * Successful STK pop up on your phone
  */
 
-data class StkPushSuccessResponse(
+data class StkPushSuccessResponse (
     @SerializedName("CheckoutRequestID")
     val checkoutRequestID: String,
     @SerializedName("CustomerMessage")
@@ -18,4 +18,4 @@ data class StkPushSuccessResponse(
     val responseCode: String,
     @SerializedName("ResponseDescription")
     val responseDescription: String,
-    )
+)

@@ -1,6 +1,8 @@
 package com.steve_md.mpesa_daraja_sdk.data.api
 
 
+import com.steve_md.mpesa_daraja_sdk.interceptor.AccessTokenInterceptor
+import com.steve_md.mpesa_daraja_sdk.interceptor.AuthInterceptor
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.CONNECT_TIMEOUT
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.READ_TIMEOUT
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.SANDBOX_BASE_URL
@@ -14,49 +16,63 @@ import java.util.concurrent.TimeUnit
 /**
  * Utilize Retrofit & Gson to handle our API calls
  */
-object DarajaApiClient {
 
-    private var is_Debug: Boolean = false
-    private var mAuthToken: String? = null
+class DarajaApiClient(
+    private val consumerKey: String,
+    private val consumerSecret: String,
+    private val environment: String
+) {
+    private var retrofit: Retrofit? = null
+    private var isDebug = false
     private var isGetAccessToken = false
+    private var mAuthToken: String? = null
+    private val httpLoggingInterceptor = HttpLoggingInterceptor()
 
-    fun setIsDebug(isDebug: Boolean): DarajaApiClient {
-        is_Debug = isDebug
+    fun setIsDebug(isDebug: Boolean): DarajaApiClient? {
+        this.isDebug = isDebug
         return this
     }
 
-    fun setAuthToken(authToken: String): DarajaApiClient {
+    fun setAuthToken(authToken: String?): DarajaApiClient? {
         mAuthToken = authToken
         return this
     }
 
-    fun setGetAccessToken(getAccessToken: Boolean): DarajaApiClient {
+    fun setGetAccessToken(getAccessToken: Boolean): DarajaApiClient? {
         isGetAccessToken = getAccessToken
         return this
     }
 
-    // Http Logging Interceptor
-    private val httpLoggingInterceptor = HttpLoggingInterceptor()
-        .setLevel(HttpLoggingInterceptor.Level.BODY)
+    private fun okHttpClient(): OkHttpClient.Builder {
+        val okHttpClient = OkHttpClient.Builder()
+        okHttpClient
+            .connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
+            .addInterceptor(httpLoggingInterceptor)
+        return okHttpClient
+    }
 
-    // OkHttpClient
-    private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(httpLoggingInterceptor)
-        .connectTimeout(CONNECT_TIMEOUT.toLong(), TimeUnit.SECONDS)
-        .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
-        .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
+    private fun getRestAdapter(): Retrofit? {
+        val builder = Retrofit.Builder()
+        builder.baseUrl(environment)
+        builder.addConverterFactory(GsonConverterFactory.create())
+        if (isDebug) {
+            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        }
+        val okhttpBuilder = okHttpClient()
+        if (isGetAccessToken) {
+            okhttpBuilder.addInterceptor(AccessTokenInterceptor(consumerKey, consumerSecret))
+        }
+        if (mAuthToken != null && !mAuthToken!!.isEmpty()) {
+            okhttpBuilder.addInterceptor(AuthInterceptor(mAuthToken!!))
+        }
+        builder.client(okhttpBuilder.build())
+        retrofit = builder.build()
+        return retrofit
+    }
 
-
-    // Get RestAdapter
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(SANDBOX_BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(okHttpClient.build())
-        .build()
-
-
-
-    val darajaApi by lazy { retrofit.create(DarajaApiService::class.java) }
-
-
+    fun mpesaService(): DarajaApiService? {
+        return getRestAdapter()!!.create(DarajaApiService::class.java)
+    }
 }

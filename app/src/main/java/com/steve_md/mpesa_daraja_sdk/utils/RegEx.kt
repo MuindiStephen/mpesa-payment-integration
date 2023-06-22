@@ -6,7 +6,7 @@ import android.util.Base64.encodeToString
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RegEx {
+object RegEx {
     fun getTimestamp(): String? {
         return SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(Date())
     }

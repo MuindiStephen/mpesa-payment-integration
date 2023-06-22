@@ -7,14 +7,7 @@ import okhttp3.Response
 import java.io.IOException
 
 
-class AuthInterceptor : Interceptor {
-    private var mAuthToken: String? = null
-
-    @SuppressLint("NotConstructor")
-    fun AuthInterceptor(authToken: String) {
-        mAuthToken = authToken
-    }
-
+class AuthInterceptor(private val mAuthToken: String) :Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request: Request = chain.request().newBuilder()
