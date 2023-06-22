@@ -4,8 +4,8 @@ package com.steve_md.android_mpesa.dto
 import com.google.gson.annotations.SerializedName
 
 /**
-* @param [accessToken] - The exact token
-* @param [expiresIn] - When the token expires
+* @param [accessToken] -> The exact token
+* @param [expiresIn] -> When the token expires
  *
  *
  * */

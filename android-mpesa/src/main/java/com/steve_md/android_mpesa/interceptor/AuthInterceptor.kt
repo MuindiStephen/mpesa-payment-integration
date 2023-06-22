@@ -1,6 +1,5 @@
 package com.steve_md.android_mpesa.interceptor
 
-import android.annotation.SuppressLint
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

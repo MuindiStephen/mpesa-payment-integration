@@ -7,11 +7,10 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
-
 /**
  *
- * This class encode the Consumer Key and Secret to
- * create the auth token and pass it as a header for our JSON request to the API
+ * This class encodes the Consumer Key and Consumer Secret to
+ * create an auth token and pass it as a header for our JSON request to the API
  *
  */
 

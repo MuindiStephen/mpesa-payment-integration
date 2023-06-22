@@ -21,6 +21,7 @@ object Constants {
     const val PARTYB = "174379" // The party receiving the funds
 
     const val CALLBACKURL = "http://mpesa-requestbin.herokuapp.com/1fw79g11"
+
     object TransactionType {
         const val CustomerPayBillOnline = "CustomerPayBillOnline"
     }
