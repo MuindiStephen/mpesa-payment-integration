@@ -14,7 +14,10 @@ import java.io.IOException
  *
  */
 
-class AccessTokenInterceptor(private val consumerkey:String,private val consumersecret:String):Interceptor {
+class AccessTokenInterceptor(
+    private val consumerkey: String,
+    private val consumersecret: String
+) : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val keys = "$consumerkey:$consumersecret"

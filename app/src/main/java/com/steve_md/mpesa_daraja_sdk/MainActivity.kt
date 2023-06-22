@@ -21,7 +21,9 @@ import com.steve_md.mpesa_daraja_sdk.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.mpesa_daraja_sdk.utils.RegEx
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
+import java.io.IOException
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
 
@@ -67,7 +69,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                 }
             }
 
-            override fun onFailure(call: Call<AuthorizationResponse?>, t: Throwable) {}
+            override fun onFailure(call: Call<AuthorizationResponse?>, t: Throwable) {
+                Log.e("MainActivity",t.printStackTrace().toString())
+            }
         })
     }
 
@@ -110,9 +114,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
                             "Response : ${response.body().toString()}",
                             Toast.LENGTH_SHORT
                         ).show()
-                        Log.d("MainActivity","post submitted to API. %s")
+                        Log.d(TAG,"post submitted to API. %s")
                     } else {
-                        Log.e("MainActivity","Response %s")
+                        Log.e(TAG,"Response %s")
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -120,8 +124,13 @@ class MainActivity : AppCompatActivity(),View.OnClickListener {
             }
 
             override fun onFailure(call: Call<StkPushSuccessResponse>, t: Throwable) {
-                Log.e("MainActivity",t.printStackTrace().toString())
+                Log.e(TAG,t.printStackTrace().toString(), httpException)
+
             }
         })
+    }
+    companion object {
+        val httpException : HttpException? = null
+        const val TAG = "MainActivity"
     }
 }

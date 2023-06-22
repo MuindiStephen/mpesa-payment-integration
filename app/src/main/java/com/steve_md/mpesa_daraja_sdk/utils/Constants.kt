@@ -24,6 +24,4 @@ object Constants {
     object TransactionType {
         const val CustomerPayBillOnline = "CustomerPayBillOnline"
     }
-
-
 }

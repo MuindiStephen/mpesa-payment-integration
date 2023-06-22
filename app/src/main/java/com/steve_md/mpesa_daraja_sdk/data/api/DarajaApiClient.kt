@@ -64,7 +64,7 @@ class DarajaApiClient(
         if (isGetAccessToken) {
             okhttpBuilder.addInterceptor(AccessTokenInterceptor(consumerKey, consumerSecret))
         }
-        if (mAuthToken != null && !mAuthToken!!.isEmpty()) {
+        if (mAuthToken != null && mAuthToken!!.isNotEmpty()) {
             okhttpBuilder.addInterceptor(AuthInterceptor(mAuthToken!!))
         }
         builder.client(okhttpBuilder.build())
