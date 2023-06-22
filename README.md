@@ -27,8 +27,8 @@ Add it in your root build.gradle at the end of repositories:
 
   ```kotlin
    dependencies {
-  	    implementation 'com.github.MuindiStephen:mpesa-payment-integration:1.0.0'
-  	}
+  	implementation 'com.github.MuindiStephen:mpesa-payment-integration:1.0.0'
+   }
   ```
 
 
