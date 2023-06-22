@@ -64,6 +64,9 @@ dependencies {
 
     // Firebase Messaging
     implementation 'com.google.firebase:firebase-messaging:23.1.2'
+
+    // Adding android-mpesa module to app module
+    implementation project (":android-mpesa")
 }
 
 

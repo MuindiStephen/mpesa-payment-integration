@@ -16,14 +16,12 @@ import com.steve_md.mpesa_daraja_sdk.utils.Constants.BUSINESS_SHORT_CODE
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.CALLBACKURL
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.PARTYB
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.PASSKEY
-import com.steve_md.mpesa_daraja_sdk.utils.Constants.Production_BASE_URL
 import com.steve_md.mpesa_daraja_sdk.utils.Constants.SANDBOX_BASE_URL
 import com.steve_md.mpesa_daraja_sdk.utils.RegEx
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
 
 class MainActivity : AppCompatActivity(),View.OnClickListener {
 
