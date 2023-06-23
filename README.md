@@ -31,6 +31,9 @@ Add it in your root build.gradle at the end of repositories:
    }
   ```
 
+### Important Tools
+- [x] (Fastlane - The easiest way to automate building and releasing your iOS and Android apps)
+
 
 
 
