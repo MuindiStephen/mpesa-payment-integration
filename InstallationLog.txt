@@ -1,0 +1,7 @@
+************************************* Invoked: Fri Jun 23 14:20:06 2023
+[0] Arguments: C:\Users\steph\AppData\Local\Temp\msys2-x86_64-20221028.exe
+[105] Operations sanity check succeeded.
+[106] Warning: Cannot create lock file "C:\Users\steph\AppData\Local\Temp\msys2-x86_64-202210281234865.lock": The process cannot access the file because it is being used by another process.
+ (0x00000020)
+[174] UnableToStart : Unable to start installer : Another msys2-x86_64-20221028 instance is already running. Wait until it finishes, close it, or restart your system.
+[620] Warning: Unable to open default EUDC font: "EUDC.TTE"
