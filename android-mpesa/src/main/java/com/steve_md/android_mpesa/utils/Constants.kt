@@ -1,4 +1,4 @@
-package com.steve_md.mpesa_daraja_sdk.utils
+package com.steve_md.android_mpesa.utils
 
 
 object Constants {
@@ -21,7 +21,10 @@ object Constants {
     const val PARTYB = "174379" // The party receiving the funds
 
     const val CALLBACKURL = "http://mpesa-requestbin.herokuapp.com/1fw79g11"
+
     object TransactionType {
         const val CustomerPayBillOnline = "CustomerPayBillOnline"
     }
+
+
 }

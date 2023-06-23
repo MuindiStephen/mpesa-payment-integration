@@ -1,12 +1,11 @@
-package com.steve_md.mpesa_daraja_sdk.data.api
+package com.steve_md.android_mpesa.data.api
 
 
-import com.steve_md.mpesa_daraja_sdk.interceptor.AccessTokenInterceptor
-import com.steve_md.mpesa_daraja_sdk.interceptor.AuthInterceptor
-import com.steve_md.mpesa_daraja_sdk.utils.Constants.CONNECT_TIMEOUT
-import com.steve_md.mpesa_daraja_sdk.utils.Constants.READ_TIMEOUT
-import com.steve_md.mpesa_daraja_sdk.utils.Constants.SANDBOX_BASE_URL
-import com.steve_md.mpesa_daraja_sdk.utils.Constants.WRITE_TIMEOUT
+import com.steve_md.android_mpesa.interceptor.AccessTokenInterceptor
+import com.steve_md.android_mpesa.interceptor.AuthInterceptor
+import com.steve_md.android_mpesa.utils.Constants.CONNECT_TIMEOUT
+import com.steve_md.android_mpesa.utils.Constants.READ_TIMEOUT
+import com.steve_md.android_mpesa.utils.Constants.WRITE_TIMEOUT
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -64,7 +63,7 @@ class DarajaApiClient(
         if (isGetAccessToken) {
             okhttpBuilder.addInterceptor(AccessTokenInterceptor(consumerKey, consumerSecret))
         }
-        if (mAuthToken != null && mAuthToken!!.isNotEmpty()) {
+        if (mAuthToken != null && !mAuthToken!!.isEmpty()) {
             okhttpBuilder.addInterceptor(AuthInterceptor(mAuthToken!!))
         }
         builder.client(okhttpBuilder.build())

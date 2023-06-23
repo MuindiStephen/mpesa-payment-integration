@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386288515813",
+    "project_id": "mpesapaymentintegration",
+    "storage_bucket": "mpesapaymentintegration.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386288515813:android:f27bd7aa7929410907320c",
+        "android_client_info": {
+          "package_name": "com.steve_md.mpesa_daraja_sdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386288515813-7vpdopl3d0fei0cifmcltqu1s2nf18j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOaEZwHw0XhcSA8aKwK5hFTtiSvCr6DCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386288515813-7vpdopl3d0fei0cifmcltqu1s2nf18j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
