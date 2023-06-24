@@ -4,7 +4,7 @@
 ##
 ##
 
-## How to
+## How to this library in your Android App
 ### To get a Git project into your build:
 
 ### Step 1. Add the JitPack repository to your build file
@@ -30,6 +30,9 @@ Add it in your root build.gradle at the end of repositories:
   	implementation 'com.github.MuindiStephen:mpesa-payment-integration:1.0.1'
    }
   ```
+
+
+
 
 ### Important Tools
 - [x] (Fastlane - The easiest way to automate building and releasing your iOS and Android apps)
