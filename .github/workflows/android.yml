@@ -24,6 +24,5 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-      
     - name: Get local.properties from secret
       run: echo "${{secret.LOCAL_PROPERTIES }}" > $GITHUB_WORKSPACE/local.properties
